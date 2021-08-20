@@ -1,0 +1,135 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coins",
+  "info": {
+    "name": "Coin",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "pluginOptions": {}
+    },
+    "symbol": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "price": {
+      "type": "float",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "market_cap": {
+      "type": "float",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "contract_address": {
+      "type": "text"
+    },
+    "promoted": {
+      "pluginOptions": {},
+      "type": "boolean",
+      "default": false
+    },
+    "networkChain": {
+      "type": "enumeration",
+      "enum": [
+        "BSC",
+        "ETH",
+        "TRX",
+        "MATUC"
+      ],
+      "pluginOptions": {}
+    },
+    "coingecko_link": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "website_link": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "telegram_link": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "twitter_link": {
+      "type": "string",
+      "pluginOptions": {}
+    },
+    "slug": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name"
+    },
+    "launch_date": {
+      "type": "datetime",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "coingecko_id": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name"
+    },
+    "in_coingecko": {
+      "pluginOptions": {},
+      "type": "boolean",
+      "default": false
+    },
+    "active": {
+      "pluginOptions": {},
+      "type": "boolean",
+      "default": false
+    },
+    "data": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "crypto.cg-data",
+      "required": true
+    },
+    "votes": {
+      "type": "integer",
+      "pluginOptions": {}
+    },
+    "created": {
+      "type": "datetime",
+      "pluginOptions": {}
+    },
+    "updated": {
+      "type": "datetime",
+      "pluginOptions": {}
+    },
+    "investors": {
+      "via": "invested_coins",
+      "plugin": "users-permissions",
+      "collection": "user"
+    }
+  }
+}

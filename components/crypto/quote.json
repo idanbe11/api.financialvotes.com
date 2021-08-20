@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_crypto_quotes",
+  "info": {
+    "name": "quote",
+    "icon": "balance-scale",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "price": {
+      "type": "float"
+    },
+    "price_change_percentage_1h": {
+      "type": "float"
+    },
+    "price_change_percentage_24h": {
+      "type": "float"
+    },
+    "price_change_percentage_7d": {
+      "type": "float"
+    },
+    "market_cap": {
+      "type": "float"
+    },
+    "last_updated": {
+      "type": "datetime"
+    }
+  }
+}

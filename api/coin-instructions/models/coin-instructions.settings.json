@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "coin_instructions",
+  "info": {
+    "name": "New Coin Page Instructions"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "mainContent": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text"
+    },
+    "additionalInfo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "order_page_contents",
+  "info": {
+    "name": "Order Page Content"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "walletDetails": {
+      "type": "richtext"
+    },
+    "instructions": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text"
+    },
+    "warningMessage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text"
+    }
+  }
+}

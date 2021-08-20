@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/vote-interactions",
+      "handler": "vote-interaction.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/vote-interactions/count",
+      "handler": "vote-interaction.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/vote-interactions/:id",
+      "handler": "vote-interaction.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/vote-interactions",
+      "handler": "vote-interaction.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/vote-interactions/:id",
+      "handler": "vote-interaction.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/vote-interactions/:id",
+      "handler": "vote-interaction.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

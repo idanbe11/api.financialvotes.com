@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/order-page-content",
+      "handler": "order-page-content.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/order-page-content",
+      "handler": "order-page-content.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/order-page-content",
+      "handler": "order-page-content.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

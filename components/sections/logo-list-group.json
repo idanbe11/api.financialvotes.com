@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_slices_logo_list_groups",
+  "info": {
+    "name": "Logo List Group",
+    "icon": "trademark"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    },
+    "logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.logos"
+    }
+  }
+}

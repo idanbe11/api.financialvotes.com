@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vote_interactions",
+  "info": {
+    "name": "Vote Interaction",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "coin_id": {
+      "type": "string",
+      "required": true
+    },
+    "created": {
+      "type": "datetime"
+    },
+    "voter": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "vote": {
+      "model": "vote",
+      "via": "interactions"
+    }
+  }
+}

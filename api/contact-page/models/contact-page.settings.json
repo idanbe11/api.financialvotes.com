@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "name": "Contact Page",
+    "description": "Contact Page Web Content"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Contact Us at FinancialVotes"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "meta.metadata"
+    },
+    "richText": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "sections.rich-text"
+    },
+    "featureRows": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "sections.feature-rows-group"
+    },
+    "form": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.contact-form"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/coin-promotions",
+      "handler": "coin-promotion.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/coin-promotions/count",
+      "handler": "coin-promotion.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/coin-promotions/:id",
+      "handler": "coin-promotion.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/coin-promotions",
+      "handler": "coin-promotion.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/coin-promotions/:id",
+      "handler": "coin-promotion.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/coin-promotions/:id",
+      "handler": "coin-promotion.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

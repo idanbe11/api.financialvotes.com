@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_crypto_cg_data",
+  "info": {
+    "name": "cg_data",
+    "icon": "bullseye"
+  },
+  "options": {},
+  "attributes": {
+    "symbol": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "categories": {
+      "type": "json"
+    },
+    "platforms": {
+      "type": "json"
+    },
+    "asset_platform_id": {
+      "type": "string"
+    },
+    "contract_address": {
+      "type": "text"
+    },
+    "image": {
+      "type": "json"
+    },
+    "genesis_date": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": false,
+      "component": "crypto.links"
+    },
+    "quote": {
+      "type": "component",
+      "repeatable": false,
+      "component": "crypto.quote"
+    },
+    "updated": {
+      "type": "datetime"
+    }
+  }
+}

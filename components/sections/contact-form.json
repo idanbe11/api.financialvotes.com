@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_sections_contact_forms",
+  "info": {
+    "name": "Contact Form",
+    "icon": "envelope"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "namePlaceholder": {
+      "type": "string"
+    },
+    "emailPlaceholder": {
+      "type": "string"
+    },
+    "messagePlaceholder": {
+      "type": "string"
+    },
+    "submitButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button"
+    },
+    "location": {
+      "type": "enumeration",
+      "enum": [
+        "Contact_Page",
+        "Home_Page"
+      ],
+      "default": "Contact_Page",
+      "required": false
+    }
+  }
+}

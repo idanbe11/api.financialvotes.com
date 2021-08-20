@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "overview_pages",
+  "info": {
+    "name": "Overview Page",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "mainContent": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text",
+      "required": true
+    },
+    "sideContent": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.rich-text",
+      "required": true
+    },
+    "featureRows": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.feature-rows-group"
+    }
+  }
+}

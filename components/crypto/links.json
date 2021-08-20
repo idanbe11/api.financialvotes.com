@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_crypto_links",
+  "info": {
+    "name": "links",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "homepage": {
+      "type": "json"
+    },
+    "chat_url": {
+      "type": "json"
+    },
+    "twitter_screen_name": {
+      "type": "string"
+    },
+    "facebook_username": {
+      "type": "string"
+    },
+    "telegram_channel_identifier": {
+      "type": "string"
+    }
+  }
+}
