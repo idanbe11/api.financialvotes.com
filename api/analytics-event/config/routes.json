@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/analytics-events",
+      "handler": "analytics-event.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/analytics-events/count",
+      "handler": "analytics-event.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/analytics-events/:id",
+      "handler": "analytics-event.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/analytics-events",
+      "handler": "analytics-event.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/analytics-events/bulk",
+      "handler": "analytics-event.bulkCreate",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/analytics-events/:id",
+      "handler": "analytics-event.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/analytics-events/:id",
+      "handler": "analytics-event.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

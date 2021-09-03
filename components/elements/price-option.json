@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_elements_price_options",
+  "info": {
+    "name": "Price Option",
+    "icon": "donate"
+  },
+  "options": {},
+  "attributes": {
+    "no_of_days": {
+      "type": "integer"
+    },
+    "discount_percentage": {
+      "type": "integer"
+    },
+    "discount_hint": {
+      "type": "string"
+    }
+  }
+}

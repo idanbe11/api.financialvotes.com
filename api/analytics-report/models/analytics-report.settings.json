@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "analytics_reports",
+  "info": {
+    "name": "Analytics Report"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "created": {
+      "type": "datetime",
+      "required": true
+    },
+    "advertisement": {
+      "model": "advertisement"
+    },
+    "events": {
+      "via": "analytics_report",
+      "collection": "analytics-event"
+    }
+  }
+}

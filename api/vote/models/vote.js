@@ -19,9 +19,8 @@ module.exports = {
      * Triggered before `vote` update query.
      */
     async beforeUpdate(params, data) {
-      // strapi.log.debug("beforeUpdate", Object.keys(data));
+      // strapi.log.debug("beforeUpdate", Object.keys(data), Object.keys(params));
       data.updated = new Date();
-      data.votes = data.interactions.length;
     },
   }
 };

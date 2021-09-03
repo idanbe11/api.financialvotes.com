@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "order_page_contents",
   "info": {
-    "name": "Order Page Content"
+    "name": "Order Page Content",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -29,6 +30,16 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.rich-text"
+    },
+    "advertisementPackage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.order-price-package"
+    },
+    "coinPromoPackage": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.order-price-package"
     }
   }
 }

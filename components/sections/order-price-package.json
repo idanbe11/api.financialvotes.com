@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_order_price_packages",
+  "info": {
+    "name": "Order Price Package",
+    "icon": "comment-dollar"
+  },
+  "options": {},
+  "attributes": {
+    "basePrice": {
+      "type": "float"
+    },
+    "priceOptions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.price-option"
+    }
+  }
+}

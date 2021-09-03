@@ -18,14 +18,21 @@ module.exports = {
     // strapi.log.debug('user', ctx.state.user);
     const userId = ctx.state.user.id;
     try {
-      const orders = await strapi.query('order').find({ user: userId });
-      await Promise.all(orders.map(async (order) => {
-        const orderEntry = await strapi.query('order').find({ id: order });
-        entities.push(orderEntry);
-      }));
+      entities = await strapi.query('order').find({ user: userId });
     } catch (error) {
       ctx.notFound('No orders found!');
     }
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.order }));
+  },
+  async create(ctx) {
+    let entity;
+    const userId = ctx.state.user.id;
+    if (ctx.is('multipart')) {
+      const { data, files } = parseMultipartData(ctx);
+      entity = await strapi.services.order.create({...data, created: new Date(), user: userId}, { files });
+    } else {
+      entity = await strapi.services.order.create({...ctx.request.body, created: new Date(), user: userId});
+    }
+    return sanitizeEntity(entity, { model: strapi.models.order });
   },
 };

@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "analytics_events",
+  "info": {
+    "name": "Analytics Event",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Load",
+        "Click"
+      ],
+      "default": "Load"
+    },
+    "source": {
+      "type": "string",
+      "default": "home"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "osInfo": {
+      "type": "json"
+    },
+    "meta": {
+      "type": "json"
+    },
+    "analytics_report": {
+      "model": "analytics-report",
+      "via": "events"
+    }
+  }
+}
