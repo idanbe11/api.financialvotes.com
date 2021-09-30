@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/test",
+      "handler": "util.test",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

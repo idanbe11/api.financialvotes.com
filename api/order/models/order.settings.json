@@ -33,6 +33,12 @@
       "type": "string",
       "required": true
     },
+    "packageId": {
+      "type": "string"
+    },
+    "selectedDays": {
+      "type": "integer"
+    },
     "orderItemText": {
       "type": "string",
       "required": true
@@ -41,23 +47,43 @@
       "type": "float",
       "required": true
     },
+    "discount": {
+      "type": "float",
+      "default": 0
+    },
     "discounted_price": {
       "type": "float",
       "required": true
     },
+    "tax_amount": {
+      "type": "float",
+      "required": true
+    },
+    "tax_percentage": {
+      "type": "float",
+      "required": true
+    },
+    "total": {
+      "type": "float",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 1
+    },
     "userNote": {
       "type": "text"
+    },
+    "user": {
+      "via": "orders",
+      "plugin": "users-permissions",
+      "model": "user"
     },
     "created": {
       "type": "datetime"
     },
     "updated": {
       "type": "datetime"
-    },
-    "user": {
-      "via": "orders",
-      "plugin": "users-permissions",
-      "model": "user"
     }
   }
 }

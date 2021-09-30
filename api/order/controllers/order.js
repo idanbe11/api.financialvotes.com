@@ -18,7 +18,7 @@ module.exports = {
     // strapi.log.debug('user', ctx.state.user);
     const userId = ctx.state.user.id;
     try {
-      entities = await strapi.query('order').find({ user: userId });
+      entities = await strapi.query('order').find({ ...ctx.query, user: userId });
     } catch (error) {
       ctx.notFound('No orders found!');
     }

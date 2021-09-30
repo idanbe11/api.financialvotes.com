@@ -56,6 +56,16 @@
       "type": "boolean",
       "default": false
     },
+    "start": {
+      "type": "datetime",
+      "required": false
+    },
+    "end": {
+      "type": "datetime"
+    },
+    "no_of_days": {
+      "type": "integer"
+    },
     "networkChain": {
       "type": "enumeration",
       "enum": [

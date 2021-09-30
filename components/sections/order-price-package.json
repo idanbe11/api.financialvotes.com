@@ -9,6 +9,9 @@
     "basePrice": {
       "type": "float"
     },
+    "taxPercentage": {
+      "type": "float"
+    },
     "priceOptions": {
       "type": "component",
       "repeatable": true,

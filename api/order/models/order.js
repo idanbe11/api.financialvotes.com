@@ -17,7 +17,7 @@ module.exports = {
    * Triggered before `order` update query.
    */
   async beforeUpdate(params, data) {
-    // strapi.log.debug("beforeUpdate", Object.keys(data), Object.keys(params));
+    strapi.log.debug("beforeUpdate", Object.keys(data), Object.keys(params));
     data.updated = new Date();
   },
 };

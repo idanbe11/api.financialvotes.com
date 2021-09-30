@@ -36,7 +36,6 @@ module.exports = {
           ctx.badRequest("Oops, Something happened!");
         }
       } catch (error) {
-        // strapi.plugins.sentry.services.sentry.sendError(error);
         strapi.log.error(error);
         ctx.badRequest(error.message);
       }

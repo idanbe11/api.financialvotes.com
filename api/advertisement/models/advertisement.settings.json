@@ -42,25 +42,17 @@
     },
     "start": {
       "type": "datetime",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "required": false
     },
     "end": {
-      "type": "datetime",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "type": "datetime"
+    },
+    "no_of_days": {
+      "type": "integer"
     },
     "active": {
       "type": "boolean",
-      "default": true,
-      "required": true,
+      "default": false,
       "pluginOptions": {
         "i18n": {
           "localized": true

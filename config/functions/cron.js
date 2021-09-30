@@ -51,9 +51,10 @@ module.exports = {
   },
   '15 * * * * *':  async () => {
   },
-  '10 * * * * *':  async () => {
+  '* 1 * * *':  async () => {
     // initial coin check, runs every 10 seconds
     // TODO: make it to hourly
+    // CHANGE THIS TO 10 * * * * *
     strapi.log.info("SCHEDULER::COIN_INITIAL_UPDATE::INIT");
     let coin = await strapi.services.coin.findOne({ active: false, in_coingecko: false }, []);
     if(coin !== null) {
