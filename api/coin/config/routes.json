@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/coins/today",
+      "handler": "coin.findTodaysBest",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/coins/my-coins",
       "handler": "coin.findByUser",
       "config": {

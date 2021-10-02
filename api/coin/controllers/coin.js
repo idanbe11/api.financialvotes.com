@@ -46,4 +46,19 @@ module.exports = {
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.coin }));
   },
+  /**
+   * Retrieve records by votes and votesUpdated.
+   *
+   * @return {Array}
+   */
+   async findTodaysBest(ctx) {
+    let entities = [];
+    if (ctx.query._q) {
+      entities = await strapi.services.coin.search({...ctx.query, _sort: 'votes:DESC,votesUpdated:DESC,name:ASC'});
+    } else {
+      entities = await strapi.services.coin.find({...ctx.query, _sort: 'votes:DESC,votesUpdated:DESC,name:ASC'});
+    }
+
+    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.coin }));
+  },
 };
