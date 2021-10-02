@@ -30,7 +30,7 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true,
+      "required": false,
       "pluginOptions": {}
     },
     "description": {
@@ -126,13 +126,17 @@
     },
     "votes": {
       "type": "integer",
-      "pluginOptions": {}
+      "default": 0
     },
     "created": {
       "type": "datetime",
       "pluginOptions": {}
     },
     "updated": {
+      "type": "datetime",
+      "pluginOptions": {}
+    },
+    "votesUpdated": {
       "type": "datetime",
       "pluginOptions": {}
     },

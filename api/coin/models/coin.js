@@ -25,9 +25,6 @@ module.exports = {
     async beforeUpdate(params, data) {
       // strapi.log.debug("beforeUpdate", Object.keys(data));
       data.updated = new Date();
-      if(!data.slug){
-        data.slug = slugify(String(data.name).toLowerCase())
-      }
     },
   }
 };
