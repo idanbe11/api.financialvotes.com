@@ -56,12 +56,14 @@ module.exports = {
       const { coin_id } = ctx.request.body;
       const userId = ctx.state.user.id;
       let voteEntry = await strapi.services.vote.findOrCreate(coin_id, userId);
+      let coin = await strapi.services.coin.find({ id: coin_id });
       let interaction = await strapi.services['vote-interaction'].findOne({ coin_id, voter: userId, created_gt :new Date(Date.now() - 24*60*60 * 1000)}, ['']);
       // strapi.log.debug('int:', interaction);
       if(!!interaction) {
         ctx.badRequest('You cannot vote again within 24 hours!');
       } else {
         //strapi.log.debug('Found Vote:', voteEntry);
+        let voteCount = voteEntry.votes + 1;
         const voteInteraction = {
           coin_id,
           created: new Date(),
@@ -69,7 +71,10 @@ module.exports = {
           vote: voteEntry.id,
         }
         const voteInteractionEntity = await strapi.services['vote-interaction'].create(voteInteraction);
-        entity = await strapi.services.vote.update({ id: voteEntry.id }, { votes: voteEntry.votes + 1 });
+        entity = await strapi.services.vote.update({ id: voteEntry.id }, { votes: voteCount });
+        if(!!coin){
+          await strapi.services.coin.update({ id: coin_id }, { votes: voteCount, votesUpdated: new Date() });
+        }
         // strapi.log.debug('voteInteractionEntity:', voteInteractionEntity);
       }
     } catch (error) {
