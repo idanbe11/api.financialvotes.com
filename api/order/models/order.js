@@ -14,10 +14,16 @@ module.exports = {
     data.created = new Date();
   },
   /**
+   * Triggered afrer `order` create query.
+   */
+  async afterCreate(result, data) {
+    // strapi.log.debug("afterCreate", result);
+  },
+  /**
    * Triggered before `order` update query.
    */
   async beforeUpdate(params, data) {
-    strapi.log.debug("beforeUpdate", Object.keys(data), Object.keys(params));
+    // strapi.log.debug("beforeUpdate", Object.keys(data), Object.keys(params));
     data.updated = new Date();
   },
 };

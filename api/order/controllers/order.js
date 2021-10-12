@@ -27,12 +27,23 @@ module.exports = {
   async create(ctx) {
     let entity;
     const userId = ctx.state.user.id;
-    if (ctx.is('multipart')) {
-      const { data, files } = parseMultipartData(ctx);
-      entity = await strapi.services.order.create({...data, created: new Date(), user: userId}, { files });
-    } else {
-      entity = await strapi.services.order.create({...ctx.request.body, created: new Date(), user: userId});
+    const email = ctx.state.user.email;
+    const client_name = ctx.state.user.firstname + ' ' + ctx.state.user.lastname;
+    try {
+      if (ctx.is('multipart')) {
+        const { data, files } = parseMultipartData(ctx);
+        strapi.log.debug('orderCreate', data);
+        entity = await strapi.services.order.create({...data, created: new Date(), user: userId}, { files });
+      } else {
+        strapi.log.debug('orderCreate', ctx.request.body);
+        entity = await strapi.services.order.create({...ctx.request.body, created: new Date(), user: userId});
+      }
+      const res = await strapi.services.icount.createNewOrderDocument(email, client_name, entity.orderItemText + `- ${entity.selectedDays} Days`, entity.base_price, entity.discount, entity.selectedDays);
+      strapi.log.debug('iCountOrderCreate', res, email, client_name);
+      return sanitizeEntity(entity, { model: strapi.models.order });
+    } catch (error) {
+      strapi.log.debug(error);
+      ctx.badRequest(error.message);
     }
-    return sanitizeEntity(entity, { model: strapi.models.order });
   },
 };

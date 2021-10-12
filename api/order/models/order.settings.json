@@ -71,6 +71,10 @@
       "type": "integer",
       "default": 1
     },
+    "walletAddress": {
+      "type": "string",
+      "required": true
+    },
     "userNote": {
       "type": "text"
     },
