@@ -70,4 +70,22 @@ module.exports = {
     }
     strapi.log.info("SCHEDULER::COIN_INITIAL_UPDATE::EXIT");
   },
+  '0 */1 * * *':  async () => {
+    // coin daily update check, runs every hour
+    // TODO: make it to hourly
+    // CHANGE THIS TO 0 */1 * * * *
+    // if the coins in coingecko and last updated before 24 hours from now, they will picked up and updated
+    strapi.log.info("SCHEDULER::COIN_DAILY_UPDATE::INIT");
+    let coins = [];
+    coins = await strapi.query('coin').find({ in_coingecko: true, updated_lt: new Date((new Date()).valueOf() - 1000*60*60*24).toISOString(), _sort: 'name:desc', _limit: 5 });
+    await Promise.all(coins.map(async (coin) => {
+      const updatedCoin = await strapi.services.coin.coinGeckoUpdate(coin);
+      if(updatedCoin !== null){
+        strapi.log.info(`SCHEDULER::COIN_DAILY_UPDATE::UPDATE_ENTRY_SUCCESS[${updatedCoin['name']}]`);
+      }else{
+        strapi.log.info(`SCHEDULER::COIN_DAILY_UPDATE::UPDATE_ENTRY_FAIL[${updatedCoin['name']}]`);
+      }
+    }));
+    strapi.log.info("SCHEDULER::COIN_DAILY_UPDATE::EXIT");
+  },
 };
