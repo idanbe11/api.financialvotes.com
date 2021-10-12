@@ -51,14 +51,35 @@ module.exports = {
     return data;
   },
   /**
-   * Create a new order and send email
+   * Create a new document
+   * @param {string} params 
+   * @param {string} doctype 
+   * @returns Object
+   */
+  createDocument: async (params, doctype) => {
+    let data = {};
+    await axios.get(`${icountURL}/doc/create?${params}&doctype=${doctype}`)
+    .then((res) => {
+      strapi.log.debug('result', res.data);
+      data = res.data;
+    })
+    .catch((err) => {
+      strapi.log.error(err.message);
+    });
+    return data;
+  },
+  /**
+   * Create a new order document
    * @param {string} email 
    * @param {string} client_name 
-   * @returns null
+   * @param {string} description 
+   * @param {number} unitprice 
+   * @param {number} discount 
+   * @param {number} quantity 
+   * @returns Object
    */
-  createNewOrderDocument: async (email, client_name, description, unitprice, sum, discount, vat_percent=vat_percent) => {
-    let data = {};
-    const params = queryString.stringify({
+  createNewOrderDocument: async (email, client_name, description, unitprice, discount, quantity) => {
+    let params = queryString.stringify({
       cid,
       user,
       pass,
@@ -70,23 +91,47 @@ module.exports = {
       currency_code,
       lang,
       doc_lang,
-      doctype: 'order',
       send_email: 1,
       email_cc_me: 1,
-      // email_to_client: 0,
       email_to_client: 1,
       doc_title: 'Your new Order on FinancialVotes',
-      
     });
-    strapi.log.debug('createNewOrderDocument', params);
-    // await axios.get(`${icountURL}/doc/create?${params}`)
-    //   .then((res) => {
-    //     // strapi.log.debug('result', res.data);
-    //     data = res.data;
-    //   })
-    //   .catch((err) => {
-    //     strapi.log.error(err.message);
-    //   });
-    return data;
+    params = params + `&items[0][description]=${description}&items[0][unitprice]=${unitprice}&items[0][quantity]=${quantity}`
+    const response = await strapi.services.icount.createDocument(params, 'order');
+    strapi.log.debug('createNewOrderDocument', params, response);
+    return response;
+  },
+  /**
+   * Create a new receipt document
+   * @param {string} email 
+   * @param {string} client_name 
+   * @param {string} description 
+   * @param {number} unitprice 
+   * @param {number} discount 
+   * @param {number} quantity 
+   * @returns Object
+   */
+   createNewReceiptDocument: async (email, client_name, description, unitprice, discount, quantity) => {
+    let params = queryString.stringify({
+      cid,
+      user,
+      pass,
+      email,
+      client_name,
+      discount,
+      tax_exempt,
+      vat_percent,
+      currency_code,
+      lang,
+      doc_lang,
+      send_email: 1,
+      email_cc_me: 1,
+      email_to_client: 1,
+      doc_title: 'Your Confirmed Order Receipt on FinancialVotes',
+    });
+    params = params + `&items[0][description]=${description}&items[0][unitprice]=${unitprice}&items[0][quantity]=${quantity}`
+    const response = await strapi.services.icount.createDocument(params, 'receipt');
+    strapi.log.debug('createNewReceiptDocument', params, response);
+    return response;
   },
 };
