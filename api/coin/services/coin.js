@@ -35,5 +35,15 @@ module.exports = {
     }
     if(!success) await strapi.services.coin.update({ id }, { updated: new Date(), active: true, in_coingecko: false });
     // strapi.log.debug('cgCoinData', cgCoinData, attempt);
+  },
+  coinGeckoUpdate: async (coin) => {
+    const { id, slug } = coin;
+    const cgCoinData = await strapi.services.coingecko.findCoinByID(slug);
+    // strapi.log.debug('cgCoinData', cgCoinData);
+    if (cgCoinData !== null) {
+      const filteredData = await strapi.services.coingecko.filterData(cgCoinData);
+      await strapi.services.coin.update({ id }, { data: filteredData, updated: new Date() });
+    }
+    return cgCoinData;
   }
 };
