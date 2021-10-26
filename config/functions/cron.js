@@ -115,7 +115,7 @@ module.exports = {
     }));
     strapi.log.info("SCHEDULER::COIN_DAILY_UPDATE::EXIT");
   },
-  '0 0 * * * *':  async () => {
+  '0 0 * * *':  async () => {
     // reset daily votes, runs every day at 00:00 AM
     strapi.log.info("SCHEDULER::RESET_DAILY_VOTES::INIT");
     let dailyVotes = [];
