@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_votes",
+  "info": {
+    "name": "Daily Votes"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "coin_id": {
+      "type": "string",
+      "required": true
+    },
+    "votes": {
+      "type": "integer",
+      "default": 0
+    },
+    "updated": {
+      "type": "datetime"
+    },
+    "interactions": {
+      "collection": "vote-interaction"
+    }
+  }
+}

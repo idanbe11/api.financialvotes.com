@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/daily-votes",
+      "handler": "daily-votes.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/daily-votes/count",
+      "handler": "daily-votes.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/daily-votes/:id",
+      "handler": "daily-votes.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/daily-votes",
+      "handler": "daily-votes.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/daily-votes/:id",
+      "handler": "daily-votes.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/daily-votes/:id",
+      "handler": "daily-votes.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
