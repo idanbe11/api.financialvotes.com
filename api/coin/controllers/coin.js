@@ -52,13 +52,34 @@ module.exports = {
    * @return {Array}
    */
    async findTodaysBest(ctx) {
-    let entities = [];
+    let entities = [], dailyVoteEntities = [], finalEntities = [];
+
     if (ctx.query._q) {
-      entities = await strapi.services.coin.search({...ctx.query, _sort: 'votes:DESC,votesUpdated:DESC,name:ASC'});
+      entities = await strapi.services.coin.search({...ctx.query, _sort: 'votesUpdated:DESC,name:ASC'});
     } else {
-      entities = await strapi.services.coin.find({...ctx.query, _sort: 'votes:DESC,votesUpdated:DESC,name:ASC'});
+      entities = await strapi.services.coin.find({...ctx.query, _sort: 'votesUpdated:DESC,name:ASC'});
     }
 
-    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.coin }));
+    dailyVoteEntities = await strapi.services['daily-votes'].find({}, ['']);
+
+
+    entities.forEach(coinEntity => {
+      const dailyVoiteEntity = dailyVoteEntities.find((e) => e.coin_id === coinEntity.id);
+      if (!!dailyVoiteEntity) {
+        finalEntities.push({
+          ...coinEntity,
+          votes: dailyVoiteEntity.votes
+        });
+      } else {
+        finalEntities.push({
+          ...coinEntity,
+          votes: 0
+        });
+      }
+    });
+
+    finalEntities.sort((a, b) => b.votes - a.votes);
+
+    return finalEntities.map(entity => sanitizeEntity(entity, { model: strapi.models.coin }));
   },
 };

@@ -51,11 +51,12 @@ module.exports = {
    * @return {Object}
    */
   async create(ctx) {
-    let entity;
+    let entity, dailyVoteEntity;
     try {
       const { coin_id } = ctx.request.body;
       const userId = ctx.state.user.id;
       let voteEntry = await strapi.services.vote.findOrCreate(coin_id, userId);
+      let dailyVoteEntry = await strapi.services['daily-votes'].findOrCreate(coin_id, userId);
       let coin = await strapi.services.coin.find({ id: coin_id });
       let interaction = await strapi.services['vote-interaction'].findOne({ coin_id, voter: userId, created_gt :new Date(Date.now() - 24*60*60 * 1000)}, ['']);
       // strapi.log.debug('int:', interaction);
@@ -64,6 +65,7 @@ module.exports = {
       } else {
         //strapi.log.debug('Found Vote:', voteEntry);
         let voteCount = voteEntry.votes + 1;
+        let dailyVoteCount = dailyVoteEntry.votes + 1;
         const voteInteraction = {
           coin_id,
           created: new Date(),
@@ -72,6 +74,7 @@ module.exports = {
         }
         const voteInteractionEntity = await strapi.services['vote-interaction'].create(voteInteraction);
         entity = await strapi.services.vote.update({ id: voteEntry.id }, { votes: voteCount });
+        dailyVoteEntity = await strapi.services['daily-votes'].update({ id: dailyVoteEntry.id }, { votes: dailyVoteCount });
         if(!!coin){
           await strapi.services.coin.update({ id: coin_id }, { votes: voteCount, votesUpdated: new Date() });
         }
