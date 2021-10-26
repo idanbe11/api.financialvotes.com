@@ -38,8 +38,6 @@ module.exports = {
         strapi.log.debug('orderCreate', ctx.request.body);
         entity = await strapi.services.order.create({...ctx.request.body, created: new Date(), user: userId});
       }
-      const res = await strapi.services.icount.createNewOrderDocument(email, client_name, entity.orderItemText + `- ${entity.selectedDays} Days`, entity.base_price, entity.discount, entity.selectedDays);
-      strapi.log.debug('iCountOrderCreate', res, email, client_name);
       return sanitizeEntity(entity, { model: strapi.models.order });
     } catch (error) {
       strapi.log.debug(error);
