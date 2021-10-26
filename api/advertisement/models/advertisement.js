@@ -23,32 +23,22 @@ const addDays = (date, days) => {
 }
 
 module.exports = {
-  /**
-   * Triggered before `advertisement` create query.
-   */
-  async beforeCreate(data) {
-    // strapi.log.debug("beforeCreate", Object.keys(data));
-    if (!data.start) {
-      data.start = new Date();
-    } else if (!data.end) {
-      data.end = addDays(data.start, DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
-    } else if (!data.start && !data.end) {
-      data.start = new Date();
-      data.end = addDays(new Date(), DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
+  lifecycles: {
+    /**
+     * Triggered before `advertisement` create query.
+     */
+    async beforeCreate(data) {
+      // strapi.log.debug("beforeCreate", Object.keys(data));
+      if (!data.start) {
+        data.start = new Date();
+      } else if (!data.end && !data.no_of_days) {
+        data.end = addDays(data.start, DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
+      } else if (!data.end && data.no_of_days) {
+        data.end = addDays(data.start, data.no_of_days);
+      } else if (!data.start && !data.end) {
+        data.start = new Date();
+        data.end = addDays(new Date(), DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
+      }
     }
-  },
-  /**
-   * Triggered before `advertisement` update query.
-   */
-  async beforeUpdate(params, data) {
-    // strapi.log.debug("beforeCreate", Object.keys(data));
-    if (!data.start) {
-      data.start = new Date();
-    } else if (!data.end) {
-      data.end = addDays(data.start, DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
-    } else if (!data.start && !data.end) {
-      data.start = new Date();
-      data.end = addDays(new Date(), DEFAULT_ADVERTISEMENT_EXPIRE_DAYS);
-    }
-  },
+  }
 };
