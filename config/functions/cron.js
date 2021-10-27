@@ -50,7 +50,7 @@ module.exports = {
     strapi.log.info("SCHEDULER::ADVERTISEMENT_STATUS_UPDATE::EXIT");
   },
   '*/30 * * * *':  async () => {
-    // update advertisement status, runs every 30 minutes
+    // update coin promotion status, runs every 30 minutes
     strapi.log.info("SCHEDULER::COIN_PROMOTION_STATUS_UPDATE::INIT");
     const promotedCoins = await strapi.query("coin").find({ active: true, promoted: true });
     if (Array.isArray(promotedCoins) && promotedCoins.length > 0) {
@@ -80,7 +80,7 @@ module.exports = {
         }
       }));
     }
-    strapi.log.info("SCHEDULER::ADVERTISEMENT_STATUS_UPDATE::EXIT");
+    strapi.log.info("SCHEDULER::COIN_PROMOTION_STATUS_UPDATE::EXIT");
   },
   '30 */1 * * * *':  async () => {
     // initial coin check, runs every 1 minute at 30th second
