@@ -110,7 +110,7 @@ module.exports = {
       if(updatedCoin !== null){
         strapi.log.info(`SCHEDULER::COIN_DAILY_UPDATE::UPDATE_ENTRY_SUCCESS[${updatedCoin['name']}]`);
       }else{
-        strapi.log.info(`SCHEDULER::COIN_DAILY_UPDATE::UPDATE_ENTRY_FAIL[${updatedCoin['name']}]`);
+        strapi.log.info(`SCHEDULER::COIN_DAILY_UPDATE::UPDATE_ENTRY_FAIL[${coin['name']}]`);
       }
     }));
     strapi.log.info("SCHEDULER::COIN_DAILY_UPDATE::EXIT");
@@ -125,7 +125,7 @@ module.exports = {
       if (deletedCoin !== null) {
         strapi.log.info(`SCHEDULER::RESET_DAILY_VOTES::DELETE_ENTRY_SUCCESS[${deletedCoin['id']}]`);
       } else {
-        strapi.log.info(`SCHEDULER::RESET_DAILY_VOTES::DELETE_ENTRY_FAIL[${deletedCoin['id']}]`);
+        strapi.log.info(`SCHEDULER::RESET_DAILY_VOTES::DELETE_ENTRY_FAIL[${vote['id']}]`);
       }
     }));
     strapi.log.info("SCHEDULER::RESET_DAILY_VOTES::EXIT");
