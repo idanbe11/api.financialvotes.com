@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/road-map",
+      "handler": "road-map.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/road-map",
+      "handler": "road-map.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/road-map",
+      "handler": "road-map.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

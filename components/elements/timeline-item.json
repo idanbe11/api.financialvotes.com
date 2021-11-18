@@ -1,0 +1,67 @@
+{
+  "collectionName": "components_elements_timeline_items",
+  "info": {
+    "name": "timeline-item",
+    "icon": "equals",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "default": "primary"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "power_button",
+        "tick",
+        "account",
+        "credit_card",
+        "email",
+        "delivery",
+        "add",
+        "delete",
+        "money_coins",
+        "send",
+        "rocket",
+        "tag",
+        "palette",
+        "settings",
+        "world",
+        "collection",
+        "chart",
+        "play_button",
+        "bell",
+        "briefcase",
+        "bookmark",
+        "idea_bulb",
+        "cloud",
+        "diamond",
+        "mobile",
+        "laptop",
+        "satisfied"
+      ],
+      "default": "idea_bulb"
+    }
+  }
+}

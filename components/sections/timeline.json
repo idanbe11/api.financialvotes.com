@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_timelines",
+  "info": {
+    "name": "timeline",
+    "icon": "list"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "required": true,
+      "repeatable": true,
+      "component": "elements.timeline-item"
+    }
+  }
+}
