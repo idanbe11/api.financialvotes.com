@@ -177,23 +177,42 @@ module.exports = {
 
   async resetPassword(ctx) {
     const params = _.assign({}, ctx.request.body, ctx.params);
+    let userId;
+    try {
+      userId = ctx.state.user.id;  
+    } catch (error) {
+      ctx.badRequest("User has to be logged in");
+      return;
+    }
 
     if (
       params.password &&
       params.passwordConfirmation &&
       params.password === params.passwordConfirmation &&
-      params.code
+      params.oldPassword
     ) {
       const user = await strapi
         .query('user', 'users-permissions')
-        .findOne({ resetPasswordToken: `${params.code}` });
+        .findOne({ id: userId });
+
+      const validPassword = await strapi.plugins[
+        'users-permissions'
+      ].services.user.validatePassword(params.oldPassword, user.password);
 
       if (!user) {
         return ctx.badRequest(
           null,
           formatError({
-            id: 'Auth.form.error.code.provide',
-            message: 'Incorrect code provided.',
+            id: 'Auth.form.error.user.provide',
+            message: 'User not found!',
+          })
+        );
+      } else if (!validPassword) {
+        return ctx.badRequest(
+          null,
+          formatError({
+            id: 'Auth.form.error.pw.provide',
+            message: 'Incorrect credentials!',
           })
         );
       }
@@ -205,7 +224,7 @@ module.exports = {
       // Update the user.
       await strapi
         .query('user', 'users-permissions')
-        .update({ id: user.id }, { resetPasswordToken: null, password });
+        .update({ id: user.id }, { password });
 
       ctx.send({
         jwt: strapi.plugins['users-permissions'].services.jwt.issue({
